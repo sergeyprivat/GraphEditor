@@ -18,6 +18,8 @@ private:
     DiagramScene *scene;
     QGraphicsView *view;
 
+    void drawShapes();
+
 };
 
 #endif // MAINWINDOW_H
