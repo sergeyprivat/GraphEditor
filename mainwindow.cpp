@@ -1,14 +1,29 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "diagramscene.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+#include <QtWidgets>
+
+MainWindow::MainWindow()
+
 {
-    ui->setupUi(this);
+
+    scene = new DiagramScene(this);
+    scene->setSceneRect(QRectF(0, 0, 5000, 5000));
+
+    QHBoxLayout *layout = new QHBoxLayout;
+
+    view = new QGraphicsView(scene);
+    layout->addWidget(view);
+
+    QWidget *widget = new QWidget;
+    widget->setLayout(layout);
+
+    setCentralWidget(widget);
+    setWindowTitle(tr("Diagramscene"));
+    setUnifiedTitleAndToolBarOnMac(true);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+
 }
