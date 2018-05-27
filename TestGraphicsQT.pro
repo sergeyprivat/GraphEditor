@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-05-24T21:51:41
+# Project created by QtCreator 2018-05-25T16:20:46
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = GraphEditor
+TARGET = TestGraphicsQT
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    diagramscene.cpp
 
 HEADERS += \
-        mainwindow.h
-
-FORMS += \
-        mainwindow.ui
+        mainwindow.h \
+    diagramscene.h

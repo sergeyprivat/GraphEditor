@@ -3,20 +3,23 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
+class DiagramScene;
+class QGraphicsView;
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    MainWindow();
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    DiagramScene *scene;
+    QGraphicsView *view;
+
+    void drawShapes();
+
 };
 
 #endif // MAINWINDOW_H
