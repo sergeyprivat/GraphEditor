@@ -3,8 +3,11 @@
 
 #include <QMainWindow>
 
+QT_BEGIN_NAMESPACE
 class DiagramScene;
 class QGraphicsView;
+class QAction;
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -14,11 +17,28 @@ public:
     MainWindow();
     ~MainWindow();
 
+private slots:
+    void deleteItem();
+    void about();
+
 private:
+    void createMenus();
+    void createActions();
+
+    void drawShapes();
+
+
     DiagramScene *scene;
     QGraphicsView *view;
 
-    void drawShapes();
+    QMenu *fileMenu;
+    QMenu *itemMenu;
+    QMenu *aboutMenu;
+
+    QAction *exitAction;
+    QAction *deleteAction;
+    QAction *aboutAction;
+
 
 };
 

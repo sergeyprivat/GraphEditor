@@ -26,8 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    diagramscene.cpp
+        diagramscene.cpp \
+
 
 HEADERS += \
         mainwindow.h \
-    diagramscene.h
+        diagramscene.h \
+
+
+RESOURCES += \
+    testgraph.qrc
