@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/delete.png</file>
+        <file>Images/textpointer.png</file>
+    </qresource>
+</RCC>
