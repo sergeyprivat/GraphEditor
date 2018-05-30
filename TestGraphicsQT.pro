@@ -37,3 +37,5 @@ HEADERS += \
 
 
 RESOURCES =   testgraph.qrc
+
+DISTFILES +=

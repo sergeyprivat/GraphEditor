@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Images/delete.png</file>
         <file>Images/textpointer.png</file>
+        <file>Images/pointer.png</file>
+        <file>Images/linepointer.png</file>
     </qresource>
 </RCC>

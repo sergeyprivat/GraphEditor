@@ -22,6 +22,9 @@ public:
 
 private slots:
     void buttonGroupClicked(int id);
+    void itemInserted(DiagramItem *item);
+
+    void itemSelected(QGraphicsItem *item);
     void deleteItem();
     void about();
 
@@ -29,13 +32,13 @@ private:
     void createActions();
     void createToolBox();
     void createMenus();
+    void createToolbars();
 
     QWidget *createCellWidget(const QString &text,
                                  DiagramItem::DiagramType type);
 
     void drawShapes();
 
-    QButtonGroup *buttonGroup;
 
     DiagramScene *scene;
     QGraphicsView *view;
@@ -44,11 +47,17 @@ private:
     QMenu *itemMenu;
     QMenu *aboutMenu;
 
+    QToolBar *editToolBar;
+    QToolBar *pointerToolbar;
+
     QAction *exitAction;
     QAction *deleteAction;
     QAction *aboutAction;
 
     QToolBox *toolBox;
+    QButtonGroup *buttonGroup;
+    QButtonGroup *pointerTypeGroup;
+
 
 
 };

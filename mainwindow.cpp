@@ -13,8 +13,17 @@ MainWindow::MainWindow()
 
 
 
-    scene = new DiagramScene(this);
+    scene = new DiagramScene(itemMenu, this);
     scene->setSceneRect(QRectF(0, 0, 1000, 1000));
+
+    connect(scene, SIGNAL(itemInserted(DiagramItem*)),
+                this, SLOT(itemInserted(DiagramItem*)));
+
+
+    connect(scene, SIGNAL(itemSelected(QGraphicsItem*)),
+                this, SLOT(itemSelected(QGraphicsItem*)));
+
+createToolbars();
 
     QHBoxLayout *layout = new QHBoxLayout;
     layout->addWidget(toolBox);
@@ -39,6 +48,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::buttonGroupClicked(int id)
 {
+    QList<QAbstractButton *> buttons = buttonGroup->buttons();
+        foreach (QAbstractButton *button, buttons) {
+            if (buttonGroup->button(id) != button)
+                button->setChecked(false);
+        }
+
+
+            scene->setItemType(DiagramItem::DiagramType(id));
+            scene->setMode(DiagramScene::InsertItem);
+
+}
+
+void MainWindow::itemInserted(DiagramItem *item)
+{
+    pointerTypeGroup->button(int(DiagramScene::MoveItem))->setChecked(true);
+        scene->setMode(DiagramScene::Mode(pointerTypeGroup->checkedId()));
+        buttonGroup->button(int(item->diagramType()))->setChecked(false);
+}
+
+
+void MainWindow::itemSelected(QGraphicsItem *item)
+{
+
 
 }
 
@@ -65,6 +97,34 @@ void MainWindow::createMenus()
 
     aboutMenu = menuBar()->addMenu(tr("&Help"));
     aboutMenu->addAction(aboutAction);
+}
+
+void MainWindow::createToolbars()
+{
+    editToolBar = addToolBar(tr("Edit"));
+        editToolBar->addAction(deleteAction);
+
+
+        QToolButton *pointerButton = new QToolButton;
+        pointerButton->setCheckable(true);
+        pointerButton->setChecked(true);
+        pointerButton->setIcon(QIcon(":/Images/pointer.png"));
+        QToolButton *linePointerButton = new QToolButton;
+        linePointerButton->setCheckable(true);
+        linePointerButton->setIcon(QIcon(":/Images/linepointer.png"));
+
+        pointerTypeGroup = new QButtonGroup(this);
+        pointerTypeGroup->addButton(pointerButton, int(DiagramScene::MoveItem));
+        pointerTypeGroup->addButton(linePointerButton, int(DiagramScene::InsertLine));
+        connect(pointerTypeGroup, SIGNAL(buttonClicked(int)),
+                this, SLOT(pointerGroupClicked(int)));
+
+
+
+        pointerToolbar = addToolBar(tr("Pointer type"));
+        pointerToolbar->addWidget(pointerButton);
+        pointerToolbar->addWidget(linePointerButton);
+
 }
 
 QWidget *MainWindow::createCellWidget(const QString &text, DiagramItem::DiagramType type)
@@ -107,8 +167,6 @@ void MainWindow::createActions()
     aboutAction->setShortcut(tr("Ctrl+B"));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
 
-
-
 }
 
 void MainWindow::createToolBox()
@@ -121,7 +179,7 @@ void MainWindow::createToolBox()
     layout->addWidget(createCellWidget(tr("Conditional"), DiagramItem::Conditional), 0, 0);
     layout->addWidget(createCellWidget(tr("Process"), DiagramItem::Step),0, 1);
     layout->addWidget(createCellWidget(tr("Input/Output"), DiagramItem::Io), 1, 0);
-    layout->addWidget(createCellWidget(tr("Trian"),DiagramItem::Trian), 2,0);
+    layout->addWidget(createCellWidget(tr("Circle"),DiagramItem::Circle), 2,0);
     //! [21]
 
     QToolButton *textButton = new QToolButton;

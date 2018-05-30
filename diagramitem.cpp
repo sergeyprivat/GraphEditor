@@ -34,7 +34,7 @@ DiagramItem::DiagramItem(DiagramType diagramType, QMenu *contextMenu,
                   << QPointF(-100, -100);
         break;
 
-    case Trian:
+    case Circle:
         // my test experiment
 
         //triangle
