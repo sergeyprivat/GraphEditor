@@ -23,6 +23,7 @@ public:
 private slots:
     void buttonGroupClicked(int id);
     void itemInserted(DiagramItem *item);
+    void pointerGroupClicked(int id);
 
     void itemSelected(QGraphicsItem *item);
     void deleteItem();

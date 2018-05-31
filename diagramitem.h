@@ -16,7 +16,7 @@ QT_END_NAMESPACE
 class DiagramItem : public QGraphicsPolygonItem
 {
 public:
-     enum DiagramType { Step, Conditional, StartEnd, Io, Circle};
+     enum DiagramType { Step, Conditional, StartEnd, Io, Circle, Line};
     DiagramItem(DiagramType diagramType, QMenu *contextMenu, QGraphicsItem *parent = 0);
 
      DiagramType diagramType() const { return myDiagramType; }
